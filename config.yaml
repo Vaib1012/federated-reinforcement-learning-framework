@@ -1,0 +1,35 @@
+global_config:
+  seed: 5959
+  device: "cpu"
+  is_mp: True
+---
+fed_config:
+  C: 1
+  K: 2
+  R: 50
+  E: 10
+  B: 10
+  actormodel_path: ./models/globalactormodel.pth
+  criticmodel_path: ./models/globalcriticmodel.pth
+---
+init_config:
+  init_type: "xavier"
+  init_gain: 1.0
+  gpu_ids: []
+  # gpu_ids: [0, 1, 2]
+---
+model_config:
+  actor:
+    name: ActorNetwork
+    state_size: 29
+
+  critic:
+    name: CriticNetwork
+    state_size: 29
+    action_size: 3
+---
+log_config:
+  log_path: ./log/
+  log_name:  "FL.log"
+  tb_port: 8080
+  tb_host: "localhost"
